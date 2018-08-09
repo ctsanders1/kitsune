@@ -60,6 +60,9 @@ def db_migrations(ctx):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('python2.7 manage.py migrate --noinput actstream --fake')
         ctx.local('python2.7 manage.py migrate --noinput authority --fake')
+        # relevant bits of django-badger were migrated to kitsune.kbadge, meaning the
+        # database tables already exist, so we can skip the initial migration
+        ctx.local('python2.7 manage.py migrate --noinput kbadge --fake-initial')
         ctx.local('python2.7 manage.py migrate --noinput')
 
 

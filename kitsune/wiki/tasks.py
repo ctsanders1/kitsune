@@ -256,6 +256,7 @@ def _rebuild_kb_chunk(data):
 @timeit
 def maybe_award_badge(badge_template, year, user):
     """Award the specific badge to the user if they've earned it."""
+    print 'kitsune.wiki.tasks.maybe_award_badge'
     badge = get_or_create_badge(badge_template, year)
 
     # If the user already has the badge, there is nothing else to do.
@@ -277,7 +278,7 @@ def maybe_award_badge(badge_template, year, user):
         qs = qs.exclude(document__locale=settings.WIKI_DEFAULT_LANGUAGE)
 
     # If the count is 10 or higher, award the badge.
-    if qs.count() >= 10:
+    if qs.count() >= settings.BADGE_LIMIT_L10N_KB:
         badge.award_to(user)
         return True
 

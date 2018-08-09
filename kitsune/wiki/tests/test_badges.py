@@ -26,7 +26,8 @@ class TestWikiBadges(TestCase):
 
         # Create 9 approved en-US revisions.
         d = DocumentFactory(locale=settings.WIKI_DEFAULT_LANGUAGE)
-        ApprovedRevisionFactory.create_batch(9, creator=u, document=d)
+        ApprovedRevisionFactory.create_batch(settings.BADGE_LIMIT_L10N_KB - 1,
+                                             creator=u, document=d)
 
         # User should NOT have the badge yet
         assert not b.is_awarded_to(u)
@@ -49,7 +50,8 @@ class TestWikiBadges(TestCase):
 
         # Create 9 approved es revisions.
         d = DocumentFactory(locale='es')
-        ApprovedRevisionFactory.create_batch(9, creator=u, document=d)
+        ApprovedRevisionFactory.create_batch(settings.BADGE_LIMIT_L10N_KB - 1,
+                                             creator=u, document=d)
 
         # User should NOT have the badge yet
         assert not b.is_awarded_to(u)

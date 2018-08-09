@@ -1,13 +1,18 @@
 from datetime import date
 
+# from django.conf import settings
+
 from kitsune.kbadge.tests import BadgeFactory
-from kitsune.questions.badges import QUESTIONS_BADGES
+from kitsune.questions.badges import register_signals, QUESTIONS_BADGES
 from kitsune.questions.tests import AnswerFactory
 from kitsune.sumo.tests import TestCase
 from kitsune.users.tests import UserFactory
 
 
 class TestQuestionsBadges(TestCase):
+
+    def setUp(self):
+        register_signals()
 
     def test_answer_badge(self):
         """Verify the Support Forum Badge is awarded properly."""
@@ -20,8 +25,8 @@ class TestQuestionsBadges(TestCase):
             title=badge_template['title'].format(year=year),
             description=badge_template['description'].format(year=year))
 
-        # Create 29 answers.
-        AnswerFactory.create_batch(29, creator=u)
+        # Create one less answer than reqiured to earn badge
+        AnswerFactory.create_batch(settings.BADGE_LIMIT_SUPPORT_FORUM - 1, creator=u)
 
         # User should NOT have the badge yet.
         assert not b.is_awarded_to(u)
