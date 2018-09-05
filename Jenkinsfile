@@ -109,6 +109,19 @@ conduit {
                     throw err
                 }
             }
+            onBranch("badger") {
+                try {
+                    dc_name = "${config.project.name}-${BUILD_NUMBER}-${GIT_COMMIT_SHORT}"
+                    sh "docker-compose --project-name ${dc_name} up -d mariadb"
+                    sh "docker-compose --project-name ${dc_name} up -d elasticsearch"
+                    sh "docker-compose --project-name ${dc_name} up -d redis"
+                    // Replace with urlwait or takis
+                    sh "sleep 10s;"
+                    sh "docker-compose --project-name ${dc_name} -f docker-compose.yml -f docker/composefiles/test.yml run web ./bin/run-unit-tests.sh"
+                } finally {
+                    sh "docker-compose --project-name ${dc_name} -f docker-compose.yml -f docker/composefiles/test.yml kill"
+                }
+            }
         }
         sh "bin/slack-notify.sh --status success --stage 'Docker image ready to deploy: ${docker_image}'"
     }
