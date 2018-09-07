@@ -1,18 +1,15 @@
 from datetime import date
 
-# from django.conf import settings
+from django.conf import settings
 
 from kitsune.kbadge.tests import BadgeFactory
-from kitsune.questions.badges import register_signals, QUESTIONS_BADGES
+from kitsune.questions.badges import QUESTIONS_BADGES
 from kitsune.questions.tests import AnswerFactory
 from kitsune.sumo.tests import TestCase
 from kitsune.users.tests import UserFactory
 
 
 class TestQuestionsBadges(TestCase):
-
-    def setUp(self):
-        register_signals()
 
     def test_answer_badge(self):
         """Verify the Support Forum Badge is awarded properly."""

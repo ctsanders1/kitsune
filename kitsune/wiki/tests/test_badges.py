@@ -5,14 +5,11 @@ from django.conf import settings
 from kitsune.kbadge.tests import BadgeFactory
 from kitsune.sumo.tests import TestCase
 from kitsune.users.tests import UserFactory
-from kitsune.wiki.badges import register_signals, WIKI_BADGES
+from kitsune.wiki.badges import WIKI_BADGES
 from kitsune.wiki.tests import ApprovedRevisionFactory, RevisionFactory, DocumentFactory
 
 
 class TestWikiBadges(TestCase):
-
-    def setUp(self):
-        register_signals()
 
     def test_kb_badge(self):
         """Verify the KB Badge is awarded properly."""
