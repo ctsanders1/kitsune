@@ -30,7 +30,6 @@ def on_revision_save(sender, instance, **kwargs):
     * We award the KB badge on 10 approved en-US edits.
     * We award the L10n badge on 10 approved translation edits.
     """
-    print 'kitsune.wiki.badges.on_revision_save'
     rev = instance
     year = rev.created.year
     creator = rev.creator

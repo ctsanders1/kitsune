@@ -114,31 +114,6 @@ class BadgeAwardForm(MyForm):
                             help_text=_(u'Explain why this badge should be awarded'))
 
 
-class DeferredAwardGrantForm(MyForm):
-    """Form to grant a deferred badge award"""
-    # TODO: Needs a captcha?
-    email = forms.EmailField()
-
-
-class MultipleClaimCodesField(MultipleItemsField):
-    """Form field which accepts multiple DeferredAward claim codes"""
-    def validate_item(self, item):
-        from kitsune.kbadge.models import DeferredAward
-        try:
-            DeferredAward.objects.get(claim_code=item)
-            return True
-        except DeferredAward.DoesNotExist:
-            raise ValidationError(_(u'No such claim code, {claimcode}').format(
-                claimcode=item))
-
-
-class DeferredAwardMultipleGrantForm(MyForm):
-    email = forms.EmailField(
-            help_text=_(u'Email address to which claims should be granted'))
-    claim_codes = MultipleClaimCodesField(
-            help_text=_(u'Comma- or space-separated list of badge claim codes'))
-
-
 class BadgeEditForm(MyModelForm):
 
     class Meta:
@@ -175,10 +150,3 @@ class BadgeNewForm(BadgeEditForm):
 
     def __init__(self, *args, **kwargs):
         super(BadgeNewForm, self).__init__(*args, **kwargs)
-
-
-class BadgeSubmitNominationForm(MyForm):
-    """Form to submit badge nominations"""
-    emails = MultiEmailField(max_items=10,
-                             help_text=_(u'Enter up to 10 email addresses for badge award '
-                                         'nominees'))

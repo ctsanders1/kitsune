@@ -1,3 +1,6 @@
+# pruned copy of django-badger/badger/admin.py
+# https://github.com/mozilla/django-badger/blob/master/badger/admin.py
+
 from urlparse import urljoin
 
 from django import forms
@@ -15,6 +18,7 @@ UPLOADS_URL = getattr(settings, 'BADGER_MEDIA_URL',
 
 def show_unicode(obj):
     return unicode(obj)
+
 show_unicode.short_description = "Display"
 
 

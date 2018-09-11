@@ -256,7 +256,6 @@ def _rebuild_kb_chunk(data):
 @timeit
 def maybe_award_badge(badge_template, year, user):
     """Award the specific badge to the user if they've earned it."""
-    print 'kitsune.wiki.tasks.maybe_award_badge'
     badge = get_or_create_badge(badge_template, year)
 
     # If the user already has the badge, there is nothing else to do.
