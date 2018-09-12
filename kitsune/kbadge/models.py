@@ -324,7 +324,7 @@ class Badge(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('kbadge.views.detail', args=(self.slug,))
+        return reverse('kbadge.badge_detail', args=(self.slug,))
 
     def get_upload_meta(self):
         return ("badge", self.slug)
@@ -385,7 +385,6 @@ class Badge(models.Model):
 
         return False
 
-    # TODO: Do we need this??
     def award_to(self, awardee=None, email=None, awarder=None,
                  description='', raise_already_awarded=False):
         """Award this badge to the awardee on the awarder's behalf"""
