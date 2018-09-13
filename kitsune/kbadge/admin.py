@@ -1,4 +1,4 @@
-# pruned copy of django-badger/badger/admin.py
+# Pruned copy of django-badger/badger/admin.py
 # https://github.com/mozilla/django-badger/blob/master/badger/admin.py
 
 from urlparse import urljoin

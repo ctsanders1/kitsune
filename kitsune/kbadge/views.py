@@ -1,5 +1,6 @@
-# Pruned and modified version of django-badger/views.py
+# Pruned and modified version of django-badger/badger/views.py
 # https://github.com/mozilla/django-badger/blob/master/badger/views.py
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpResponseForbidden

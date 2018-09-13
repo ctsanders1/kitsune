@@ -1,3 +1,6 @@
+# Pruned and mnodified version of django-badger/badger/models.py
+# https://github.com/mozilla/django-badger/blob/master/badger/models.py
+
 import hashlib
 import json
 import os.path

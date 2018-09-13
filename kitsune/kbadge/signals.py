@@ -1,6 +1,7 @@
-"""
-**Ported from mozilla/django-badger**
+# Pruned version of django-badger/badger/signals.py
+# https://github.com/mozilla/django-badger/blob/master/badger/signals.py
 
+"""
 Signals relating to badges.
 
 For each of these, you can register to receive them using standard
