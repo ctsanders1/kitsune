@@ -18,6 +18,10 @@ class BadgesListView(ListView):
     template_name = 'badger/badges_list.html'
     template_object_name = 'badge'
 
+    def get_queryset(self):
+        qs = Badge.objects.order_by('-created')
+        return qs
+
 
 @require_http_methods(['HEAD', 'GET'])
 def detail(request, slug):
